@@ -3,9 +3,9 @@
 
 import json
 
-jsonobject = json.load(file('5365dee31bc6e9d9463a0057'))
-jsonobject = json.dumps(jsonobject, ensure_ascii=False)
+jsonobject = json.dumps(file('5365dee31bc6e9d9463a0057'), ensure_ascii=False)
+js = json.load(jsonobject)
 
-for jsonobjects in jsonobject:
-  print jsonobject["總價元"]
+for j in js:
+  print j["總價元"]
 
