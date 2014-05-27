@@ -13,7 +13,11 @@ public class TocHW3{
     //s="{\"persons\":[\"张三\",\"李四\",\"王五\"]}";
     jsonObj = new JSONObject(s);
     //JSONArray jsonarr=jsonObj.getJSONArray("");
-    for(int i=0;i<ary.length();i++){
-        System.out.println(ary.getJSONArray(i).getJSONObject("name")); }
+    int sum = 0;
+    for(int i=0;i<ary.length();i++)
+    {
+      sum += ary.getJSONObject(i).getInt("age");
+    }
+    System.out.println((double)sum / ary.length());
 }
 }
