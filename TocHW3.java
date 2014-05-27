@@ -1,60 +1,67 @@
 import org.json.*;
 import java.io.*;
+import java.net.URL;
+import java.net.URLConnection;
 
 public class TocHW3 
 {
-    public static String read(String filename) throws IOException {  
-        // 使用BufferedReader进行缓冲，来提高文件的读取数据  
-        BufferedReader in = new BufferedReader(new FileReader(filename));  
+    public static String read(String urlStr) throws IOException 
+    {  
+        URL url = new URL(urlStr);
+        URLConnection connection = url.openConnection();
+        connection.setDoInput(true);
+        InputStream inStream = connection.getInputStream();
+        
+        BufferedReader in = new BufferedReader(new InputStreamReader(inStream));
         String s;  
         StringBuilder sb = new StringBuilder();  
+        
         while ((s = in.readLine()) != null)  
-            sb.append(s + "\n");  
+            sb.append(s + "\n");
+
         in.close();  
         return sb.toString();  
     }  
 
     public static void main(String args[]) throws IOException
     {
-        JSONArray ary = new JSONArray(read("5365dee31bc6e9d9463a0057"));
+        JSONArray ary = new JSONArray(read(args[0]));
 
         long sum = 0;
         int length = 0;
-        for(int i=0;i<ary.length();i++)
+        for(int i = 0; i < ary.length(); i++)
         {
             try
             {
-                if (!ary.getJSONObject(i).getString("鄉鎮市區").equals("大安區")) 
+                if (!ary.getJSONObject(i).getString("鄉鎮市區").equals(args[1])) 
                     continue;
                 //System.out.println(ary.getJSONObject(i).getString("鄉鎮市區"));
             }
             catch(org.json.JSONException e1)
             {
-                System.out.println("鄉鎮市區 error");
+                //System.out.println("鄉鎮市區 error");
                 continue;
             }
 
             try
             {
-                if (ary.getJSONObject(i).getString("土地區段位置或建物區門牌").indexOf("復興南路") == -1) 
+                if (ary.getJSONObject(i).getString("土地區段位置或建物區門牌").indexOf(args[2]) == -1) 
                     continue;
-                //System.out.println(ary.getJSONObject(i).getString("鄉鎮市區"));
             }
             catch(org.json.JSONException e2)
             {
-                System.out.println("土地區段位置或建物區門牌 error");
+                //System.out.println("土地區段位置或建物區門牌 error");
                 continue;
             }
 
             try
             {
-                if (ary.getJSONObject(i).getInt("交易年月") < (103*100)) 
+                if (ary.getJSONObject(i).getInt("交易年月") < (Integer.parseInt(args[3])*100)) 
                     continue;
-                //System.out.println(ary.getJSONObject(i).getString("鄉鎮市區"));
             }
             catch(org.json.JSONException e3)
             {
-                System.out.println("交易年月 error");
+                //System.out.println("交易年月 error");
                 continue;
             }
 
@@ -70,8 +77,10 @@ public class TocHW3
             }
 
             length++;
-            //System.out.println(i);
         }
-        System.out.println(sum / length); // when length = 0 ?
+        if (length == 0) 
+            System.out.println("No result!");
+        else
+            System.out.println(sum / length);
     }
 }
