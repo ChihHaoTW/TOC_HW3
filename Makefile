@@ -7,7 +7,7 @@ MF_FILE= manifest.mf
 FILE=
 .SUFFIXES: .java .class
 .java.class:
-	$(JC) $(JFLAGS) $*.java
+	$(JC) $(JFLAGS) $*.java -encoding UTF-8
 CLASSES = \
 	TocHW3.java
 
