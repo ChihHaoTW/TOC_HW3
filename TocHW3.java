@@ -9,7 +9,6 @@ public class TocHW3
     public static String read(String urlStr) throws IOException 
     {  
         URL url = new URL(urlStr);
-        URLEncoder.encode(stringToBeEncoded, "UTF-8");
         URLConnection connection = url.openConnection();
         connection.setDoInput(true);
         InputStream inStream = connection.getInputStream();
@@ -19,7 +18,10 @@ public class TocHW3
         StringBuilder sb = new StringBuilder();  
 
         while ((s = in.readLine()) != null)  
+        {
+            URLEncoder.encode(s, "UTF-8");
             sb.append(s + "\n");
+        }
 
         in.close();  
         return sb.toString();  
