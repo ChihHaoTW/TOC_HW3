@@ -2,12 +2,14 @@ import org.json.*;
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
 
 public class TocHW3 
 {
     public static String read(String urlStr) throws IOException 
     {  
         URL url = new URL(urlStr);
+        URLEncoder.encode(stringToBeEncoded, "UTF-8")
         URLConnection connection = url.openConnection();
         connection.setDoInput(true);
         InputStream inStream = connection.getInputStream();
@@ -15,7 +17,7 @@ public class TocHW3
         BufferedReader in = new BufferedReader(new InputStreamReader(inStream));
         String s;  
         StringBuilder sb = new StringBuilder();  
-        
+
         while ((s = in.readLine()) != null)  
             sb.append(s + "\n");
 
