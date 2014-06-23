@@ -1,4 +1,19 @@
 Theory of Computation HW3
 =======
 
-- python version：2.7.4
+use make file
+
+- build
+```
+make
+```	
+
+- build .jar file
+```
+make jar
+```	
+
+- run
+```
+make run [argv]
+```	
