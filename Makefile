@@ -9,9 +9,9 @@ FILE=
 .java.class:
 	$(JC) $(JFLAGS) $*.java -encoding UTF-8
 CLASSES = \
-	TocHW3.java
+	TocHw3.java
 
-MAIN = TocHW3
+MAIN = TocHw3
 
 default: classes
 
