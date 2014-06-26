@@ -3,6 +3,7 @@ JFLAGS = -cp $(LIB_FILE)
 JC = javac
 JVM= java
 JAR= jar cvfm
+SCHNUM = F74006357
 MF_FILE= manifest.mf
 FILE=
 .SUFFIXES: .java .class
@@ -22,6 +23,9 @@ run: classes
 
 jar: classes
 	$(JAR) $(MAIN).jar $(MF_FILE) *.class
+
+build:
+	ant -buildfile /home/TOC/ANT/toc4/build.xml build -Darg $(SCHNUM)
 
 clean:
 	$(RM) *.class
