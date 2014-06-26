@@ -19,7 +19,7 @@ public class TocHW3
 
         while ((s = in.readLine()) != null)  
         {
-            URLEncoder.encode(s, "UTF-8");
+            //URLEncoder.encode(s, "UTF-8");
             sb.append(s + "\n");
         }
 
